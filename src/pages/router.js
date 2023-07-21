@@ -1,5 +1,6 @@
 import BgChanger from "./BgChanger";
 import PwdGen from "./PwdGen";
+import Todo from "./Todo";
 
 const router = [
     {
@@ -9,6 +10,10 @@ const router = [
     {
         path: "/password-generator",
         element: <PwdGen />,
+    },
+    {
+        path: "/todo",
+        element: <Todo />,
     },
 ];
 
