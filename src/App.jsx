@@ -1,9 +1,19 @@
-import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function App() {
     return (
         <div className="App">
-            <Outlet />
+            <ul className="py-4 px-6">
+                <li className="underline mb-2">
+                    <Link to={"/background-changer"}>Background Changer</Link>
+                </li>
+                <li className="underline mb-2">
+                    <Link to={"/password-generator"}>Password Generator</Link>
+                </li>
+                <li className="underline mb-2">
+                    <Link to={"/todo"}>Todo</Link>
+                </li>
+            </ul>
         </div>
     );
 }
