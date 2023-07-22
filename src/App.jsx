@@ -13,6 +13,9 @@ function App() {
                 <li className="underline mb-2">
                     <Link to={"/todo"}>Todo</Link>
                 </li>
+                <li className="underline mb-2">
+                    <Link to={"/tic-tac-toe"}>Tic Tac Toe</Link>
+                </li>
             </ul>
         </div>
     );
