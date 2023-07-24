@@ -30,31 +30,28 @@ const quizSlice = createSlice({
             };
         },
         updateQuiz(state, action) {
-            state[action.payload.quizId].name = action.payload.name;
+            if (state[action.payload.quizId]) state[action.payload.quizId].name = action.payload.name;
         },
         deleteQuiz(state, action) {
-            delete state[action.payload];
+            delete state[action.payload.quizId];
         },
         addQuestion(state, action) {
-            if (state[action.payload.quizId]) {
+            if (state[action.payload.quizId])
                 state[action.payload.quizId].questions[Date.now()] = action.payload.question;
-            }
         },
         updateQuestion(state, action) {
             if (
                 state[action.payload.quizId] &&
                 state[action.payload.quizId].questions[action.payload.questionId]
-            ) {
+            )
                 state[action.payload.quizId].questions[action.payload.questionId] = action.payload.question;
-            }
         },
         deleteQuestion(state, action) {
             if (
                 state[action.payload.quizId] &&
                 state[action.payload.quizId].questions[action.payload.questionId]
-            ) {
+            )
                 delete state[action.payload.quizId].questions[action.payload.questionId];
-            }
         },
     },
 });

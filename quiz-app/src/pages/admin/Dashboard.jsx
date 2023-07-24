@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { QuizForm, QuizCard } from "../../components";
-import { Link } from "react-router-dom";
 
 function Dashboard() {
     const [search, setSearch] = useState("");
@@ -37,16 +36,17 @@ function Dashboard() {
                             key={quizId}
                             className="w-full sm:w-1/2 md:w-1/3 lg:h-w-1/4 xl:w-1/5 2xl:w-1/6 px-2"
                         >
-                            <Link to={`quiz/${quizId}`}>
-                                <QuizCard index={index} quizId={quizId} />
-                            </Link>
+                            <QuizCard href={`quiz/${quizId}`} index={index} quizId={quizId} editable />
                         </div>
                     ) : null
                 )}
             </div>
 
             {quizFormVisible && (
-                <div className="fixed inset-0 bg-black/20 px-4" onClick={() => setQuizFormVisible(false)}>
+                <div
+                    className="fixed inset-0 bg-black/20 px-4 z-50"
+                    onClick={() => setQuizFormVisible(false)}
+                >
                     <div
                         className="w-full max-w-sm absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow-md"
                         onClick={(e) => e.stopPropagation()}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { QuizCard } from "../components";
 
 function Home() {
@@ -27,9 +26,7 @@ function Home() {
                             key={quizId}
                             className="w-full sm:w-1/2 md:w-1/3 lg:h-w-1/4 xl:w-1/5 2xl:w-1/6 px-2"
                         >
-                            <Link to={`quiz/${quizId}`}>
-                                <QuizCard index={index} quizId={quizId} />
-                            </Link>
+                            <QuizCard href={`quiz/${quizId}`} index={index} quizId={quizId} />
                         </div>
                     ) : null
                 )}

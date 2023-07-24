@@ -1,24 +1,30 @@
-import React, { useId, useState } from "react";
-import { useDispatch } from "react-redux";
-import { addQuiz } from "../store/quizSlice";
+import React, { useEffect, useId, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addQuiz, updateQuiz } from "../store/quizSlice";
 
-function QuizForm({ onSubmit }) {
+function QuizForm({ onSubmit, quizId }) {
     const dispatch = useDispatch();
     const [name, setName] = useState("");
+
+    const quiz = useSelector((state) => state.quizes[quizId]);
 
     const id = useId();
 
     const add = (e) => {
         e.preventDefault();
         if (name) {
-            dispatch(addQuiz({ name }));
+            dispatch(quiz ? updateQuiz({ name, quizId }) : addQuiz({ name }));
             onSubmit && onSubmit();
         }
     };
 
+    useEffect(() => {
+        if (quiz) setName(quiz.name);
+    }, [quiz]);
+
     return (
         <form className="p-4 bg-white rounded-lg" onSubmit={add}>
-            <h2 className="font-bold text-2xl text-center mb-4">Add Quiz</h2>
+            <h2 className="font-bold text-2xl text-center mb-4">{quiz ? "Update" : "Add"} Quiz</h2>
             <label htmlFor={id} className="mb-1 inline-block px-1">
                 Quiz Name
             </label>
@@ -33,7 +39,7 @@ function QuizForm({ onSubmit }) {
                 required
             />
             <button className="bg-green-600 text-white px-4 py-1.5 rounded-lg w-full mt-4" type="submit">
-                Add Quiz
+                {quiz ? "Update" : "Add"} Quiz
             </button>
         </form>
     );
