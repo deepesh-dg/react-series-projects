@@ -3,11 +3,59 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import store from "./store/store";
+import Home from "./pages/Home";
+import Admin from "./Admin";
+import Dashboard from "./pages/admin/Dashboard";
+import RootLayout from "./Layout";
+import HomeQuizQuestions from "./pages/QuizQuestions";
+import QuizQuestions from "./pages/admin/QuizQuestions";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <RootLayout />,
+        children: [
+            {
+                path: "/",
+                element: <App />,
+                children: [
+                    {
+                        path: "",
+                        element: <Home />,
+                    },
+                    {
+                        path: "quiz/:quizId",
+                        element: <HomeQuizQuestions />,
+                    },
+                ],
+            },
+            {
+                path: "/admin",
+                element: <Admin />,
+                children: [
+                    {
+                        path: "",
+                        element: <Dashboard />,
+                    },
+                    {
+                        path: "quiz/:quizId",
+                        element: <QuizQuestions />,
+                    },
+                ],
+            },
+        ],
+    },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
-        <App />
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
     </React.StrictMode>
 );
 
