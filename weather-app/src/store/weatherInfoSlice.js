@@ -20,6 +20,6 @@ const weatherInfoSlice = createSlice({
     },
 });
 
-export const { setWeatherInfo, setCoordinates } = weatherInfoSlice.actions;
+export const { setCoordinates } = weatherInfoSlice.actions;
 
 export default weatherInfoSlice.reducer;
