@@ -30,7 +30,7 @@ function QuesForm({ onSubmit, quizId, questionId }) {
     };
 
     useEffect(() => {
-        if (question) setFormData(question);
+        if (question) setFormData({ ...question });
     }, [question]);
 
     return (
@@ -64,7 +64,7 @@ function QuesForm({ onSubmit, quizId, questionId }) {
                                 placeholder={`Option ${defaultAlphabet.numberToString(i + 1).toUpperCase()}`}
                                 value={value}
                                 onChange={(e) => {
-                                    const options = formData.options;
+                                    const options = [...formData.options];
                                     options[i] = e.target.value;
                                     setFormData((prev) => ({ ...prev, options }));
                                 }}
