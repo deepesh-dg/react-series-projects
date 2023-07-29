@@ -37,7 +37,7 @@ function App() {
     }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
     return (
-        <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8">
+        <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-100">
             <div className="flex shadow rounded-lg overflow-hidden mb-4">
                 <input
                     type="text"
@@ -65,6 +65,7 @@ function App() {
                         onChange={(e) => {
                             setLength(e.target.value);
                         }}
+                        className="cursor-pointer"
                     />
                     <label>Length ({length})</label>
                 </div>
