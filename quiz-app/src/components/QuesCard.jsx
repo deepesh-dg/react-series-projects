@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NumberToAlphabet } from "number-to-alphabet";
 import QuesForm from "./QuesForm";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteQuestion } from "../store/quizSlice";
+import numberToAlphabet from "../helpers/numberToAlphabet";
 
 function SerialNo({ text }) {
     return (
@@ -26,8 +26,6 @@ function QuesCard({ questionNo, quizId, questionId, editable = false }) {
     const dispatch = useDispatch();
 
     const question = useSelector((state) => state.quizes[quizId].questions[questionId]);
-
-    const defaultAlphabet = new NumberToAlphabet();
 
     useEffect(() => {
         if (selectedOption > 0) {
@@ -102,9 +100,7 @@ function QuesCard({ questionNo, quizId, questionId, editable = false }) {
                                 }}
                             >
                                 <span className="inline-flex shrink-0 w-8">
-                                    <SerialNo
-                                        text={defaultAlphabet.numberToString(optionKey).toUpperCase()}
-                                    />
+                                    <SerialNo text={numberToAlphabet(optionKey).toUpperCase()} />
                                 </span>
                                 <span className="inline-block w-full">{option}</span>
                             </button>

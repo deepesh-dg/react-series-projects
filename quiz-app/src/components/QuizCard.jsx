@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NumberToAlphabet } from "number-to-alphabet";
 import QuizForm from "./QuizForm";
 import { Link } from "react-router-dom";
 import { deleteQuiz } from "../store/quizSlice";
+import numberToAlphabet from "../helpers/numberToAlphabet";
 
 function QuizCard({ quizId, index: key, href, editable = false }) {
     const quiz = useSelector((state) => state.quizes[quizId]);
@@ -18,7 +18,6 @@ function QuizCard({ quizId, index: key, href, editable = false }) {
 
         return colors[index];
     }, [key]);
-    const defaultAlphabet = new NumberToAlphabet();
 
     if (!quiz) return null;
 
@@ -40,7 +39,7 @@ function QuizCard({ quizId, index: key, href, editable = false }) {
                                     <p className="mb-1.5">Q: {firstQuestion.question}</p>
                                     {firstQuestion.options.map((option, i) => (
                                         <p key={i} className="mb-0.5">
-                                            {defaultAlphabet.numberToString(i + 1)}: {option}
+                                            {numberToAlphabet(i + 1)}: {option}
                                         </p>
                                     ))}
                                 </>

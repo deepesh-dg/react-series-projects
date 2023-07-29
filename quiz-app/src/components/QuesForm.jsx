@@ -1,7 +1,7 @@
 import React, { useEffect, useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addQuestion, updateQuestion } from "../store/quizSlice";
-import { NumberToAlphabet } from "number-to-alphabet";
+import numberToAlphabet from "../helpers/numberToAlphabet";
 
 function QuesForm({ onSubmit, quizId, questionId }) {
     const dispatch = useDispatch();
@@ -15,7 +15,6 @@ function QuesForm({ onSubmit, quizId, questionId }) {
 
     const questionInputId = useId();
     const answerKeyInputId = useId();
-    const defaultAlphabet = new NumberToAlphabet();
 
     const add = (e) => {
         e.preventDefault();
@@ -61,7 +60,7 @@ function QuesForm({ onSubmit, quizId, questionId }) {
                             <input
                                 className="bg-transparent outline-none border border-black/20 rounded-lg px-3 py-2 w-full"
                                 type="text"
-                                placeholder={`Option ${defaultAlphabet.numberToString(i + 1).toUpperCase()}`}
+                                placeholder={`Option ${numberToAlphabet(i + 1).toUpperCase()}`}
                                 value={value}
                                 onChange={(e) => {
                                     const options = [...formData.options];
