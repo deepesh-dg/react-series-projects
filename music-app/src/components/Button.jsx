@@ -4,7 +4,7 @@ function Button({ children, className, ...props }) {
     return (
         <button
             {...props}
-            className={`rounded-lg bg-gray-50 px-3 py-1 duration-150 hover:bg-gray-200 ${className}`}
+            className={`text-black rounded-lg bg-gray-100 px-3 py-1 duration-150 hover:bg-white ${className}`}
         >
             {children}
         </button>

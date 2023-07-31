@@ -150,7 +150,7 @@ const musicSlice = createSlice({
             state.mute = true;
         },
         unmute(state) {
-            state.play = false;
+            state.mute = false;
         },
         toggleMute(state) {
             state.mute = !state.mute;

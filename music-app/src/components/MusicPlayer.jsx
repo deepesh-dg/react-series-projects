@@ -41,6 +41,7 @@ function MusicPlayer() {
         if (audioElement) {
             audioElement.volume = volume / 100;
             audioElement.muted = mute;
+
             if (play)
                 audioElement.play().catch((e) => {
                     // Throws error when music completes and we either click on prev or next.
@@ -79,20 +80,33 @@ function MusicPlayer() {
         };
     }, [audioElement, dispatch]);
 
-    return (
-        <div>
-            <div className="flex flex-wrap justify-center gap-x-4">
-                <div className="w-full">
-                    <PlayingBar />
+    return current ? (
+        <div className="flex flex-wrap justify-center gap-x-4">
+            <div className="w-full mb-2">
+                <PlayingBar />
+            </div>
+            <div className="w-full flex justify-between">
+                <div className="flex gap-x-4">
+                    <PrevBtn />
+                    {play ? <PauseBtn /> : <PlayBtn />}
+                    <NextBtn />
                 </div>
-                <PrevBtn />
-                {play ? <PauseBtn /> : <PlayBtn />}
-                <NextBtn />
-                <VolumeBar />
-                <ToggleMute />
+                <div className="flex gap-x-4">
+                    <div className="w-[100px]">
+                        <img className="rounded-xl" src={current.thumbnail} alt={current.name} />
+                    </div>
+                    <div className="block">
+                        <h2 className="text-center font-bold text-sm">{current.name}</h2>
+                        <p className="text-gray-600 text-[12px]">{current.singer}</p>
+                    </div>
+                </div>
+                <div className="flex gap-x-4">
+                    <ToggleMute />
+                    <VolumeBar />
+                </div>
             </div>
         </div>
-    );
+    ) : null;
 }
 
 export default MusicPlayer;
