@@ -7,34 +7,25 @@ import { Provider } from "react-redux";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import store from "./store/store";
 import Home from "./pages/Home";
-import Admin from "./Admin";
 import Dashboard from "./pages/admin/Dashboard";
-import RootLayout from "./Layout";
 import HomeQuizQuestions from "./pages/QuizQuestions";
 import QuizQuestions from "./pages/admin/QuizQuestions";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <RootLayout />,
+        element: <App />,
         children: [
             {
                 path: "/",
-                element: <App />,
-                children: [
-                    {
-                        path: "",
-                        element: <Home />,
-                    },
-                    {
-                        path: "quiz/:quizId",
-                        element: <HomeQuizQuestions />,
-                    },
-                ],
+                element: <Home />,
+            },
+            {
+                path: "quiz/:quizId",
+                element: <HomeQuizQuestions />,
             },
             {
                 path: "/admin",
-                element: <Admin />,
                 children: [
                     {
                         path: "",
