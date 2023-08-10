@@ -14,6 +14,7 @@ import Login from "./pages/(auth)/Login";
 import Signup from "./pages/(auth)/Signup";
 import Post from "./pages/Post";
 import EditPost from "./pages/(protected)/EditPost";
+import AllPosts from "./pages/(protected)/AllPosts";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,16 @@ const router = createBrowserRouter([
                     {
                         path: "",
                         element: <Signup />,
+                    },
+                ],
+            },
+            {
+                path: "/all-posts",
+                element: <ProtectedLayout />,
+                children: [
+                    {
+                        path: "",
+                        element: <AllPosts />,
                     },
                 ],
             },
