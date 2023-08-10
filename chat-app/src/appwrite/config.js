@@ -12,28 +12,56 @@ export class Service {
         this.bucket = new Storage(this.client);
     }
 
-    async getMsg(userId, toUserId) {
+    subscribeMsgs(callback) {
         try {
-            return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectoinId, [
-                Query.equal("userId", userId),
-                Query.equal("toUserId", toUserId),
-            ]);
+            return this.client.subscribe(
+                `databases.${conf.appwriteDatabaseId}.collections.${conf.appwriteCollectoinId}.documents`,
+                callback
+            );
         } catch (error) {
-            console.log("Appwrite service :: getPosts() :: " + error);
+            console.log("Appwrite service :: subscribeMsgs() :: " + error);
             return false;
         }
     }
 
-    async sendMsg({ msg, userId, toUserId }) {
+    async getMsgs() {
+        try {
+            return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectoinId);
+        } catch (error) {
+            console.log("Appwrite service :: getMsgs() :: " + error);
+            return false;
+        }
+    }
+
+    async getMsg({ senderId, msgId }) {
+        try {
+            if (msgId) {
+                return await this.databases.getDocument(
+                    conf.appwriteDatabaseId,
+                    conf.appwriteCollectoinId,
+                    msgId
+                );
+            }
+
+            return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectoinId, [
+                senderId ? Query.equal("senderId", senderId) : undefined,
+            ]);
+        } catch (error) {
+            console.log("Appwrite service :: getMsg() :: " + error);
+            return false;
+        }
+    }
+
+    async sendMsg({ msg, senderId, attachmentId }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectoinId,
-                msg,
-                { msg, userId, toUserId }
+                ID.unique(),
+                { msg, senderId, attachmentId }
             );
         } catch (error) {
-            console.log("Appwrite service :: createPost() :: " + error);
+            console.log("Appwrite service :: sendMsg() :: " + error);
             return false;
         }
     }
@@ -47,7 +75,7 @@ export class Service {
                 { msg }
             );
         } catch (error) {
-            console.log("Appwrite service :: updateProject() :: " + error);
+            console.log("Appwrite service :: EditMsg() :: " + error);
             return null;
         }
     }
@@ -57,7 +85,7 @@ export class Service {
             await this.databases.deleteDocument(conf.appwriteDatabaseId, conf.appwriteCollectoinId, id);
             return true;
         } catch (error) {
-            console.log("Appwrite service :: deletePost() :: " + error);
+            console.log("Appwrite service :: deleteMsg() :: " + error);
             return false;
         }
     }

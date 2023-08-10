@@ -6,17 +6,19 @@ const chatSlice = createSlice({
     name: "chat",
     initialState,
     reducers: {
+        setMsg: (state, action) => {
+            state.splice(0, state.length, ...action.payload);
+        },
         addMsg: (state, action) => {
             state.push(action.payload);
         },
         editMsg: (state, action) => {
-            state = state.map((msg) => (msg.$id === action.payload.$id ? action.payload : msg));
+            const newMsgs = state.map((msg) => (msg.$id === action.payload.$id ? action.payload : msg));
+            state.splice(0, state.length, ...newMsgs);
         },
         deleteMsg: (state, action) => {
-            state = state.filter((msg) => msg.$id !== action.payload);
-        },
-        setChat: (state, action) => {
-            state = action.payload;
+            const newMsgs = state.filter((msg) => msg.$id !== action.payload);
+            state.splice(0, state.length, ...newMsgs);
         },
         reset: (state, action) => {
             state = initialState;
@@ -24,6 +26,6 @@ const chatSlice = createSlice({
     },
 });
 
-export const { addMsg, editMsg, deleteMsg, setChat, reset } = chatSlice.actions;
+export const { addMsg, editMsg, deleteMsg, setMsg, reset } = chatSlice.actions;
 
 export default chatSlice.reducer;
