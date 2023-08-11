@@ -1,4 +1,3 @@
-"use client";
 import authService from "../appwrite/auth";
 import { useNavigate, Link } from "react-router-dom";
 import React, { useState } from "react";
