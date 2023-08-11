@@ -1,11 +1,11 @@
 import React from "react";
 import appwriteService from "../../appwrite/config";
 
-export default function Received({ msg, $id, attachmentId }) {
+export default function Received({ msg, senderId, attachmentId }) {
     return (
         <div className="block relative mb-2">
             <span className="inline-block py-2 px-4 bg-gray-200 rounded-lg">
-                <span className="text-blue-600">@{$id}</span>
+                <span className="text-blue-600">@{senderId}</span>
                 {attachmentId && (
                     <a
                         href={appwriteService.getFilePreview(attachmentId)}

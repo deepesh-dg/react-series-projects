@@ -11,6 +11,7 @@ const Signup = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        username: "",
         password: "",
     });
 
@@ -55,6 +56,13 @@ const Signup = () => {
                             setValue={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                             label="Full Name : "
                             placeholder="Full Name"
+                            required
+                        />
+                        <Input
+                            setValue={(value) => setFormData((prev) => ({ ...prev, username: value }))}
+                            label="Username : "
+                            placeholder="Username"
+                            type="text"
                             required
                         />
                         <Input

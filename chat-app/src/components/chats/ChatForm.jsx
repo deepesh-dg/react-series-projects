@@ -48,6 +48,7 @@ export default function ChatForm() {
                     accept="image/png, image/jpg, image/jpeg, image/gif"
                 />
                 <button
+                    type="button"
                     className="bg-gray-200 mr-2 rounded-lg py-0.5 px-4 text-sm"
                     onClick={() => ref.current.click()}
                 >

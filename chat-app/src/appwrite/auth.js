@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Account, ID } from "appwrite";
+import { Client, Account } from "appwrite";
 
 export class AuthService {
     client = new Client();
@@ -11,9 +11,9 @@ export class AuthService {
     }
 
     // create a new record of user inside appwrite
-    async createAccount({ email, password, name }) {
+    async createAccount({ email, password, name, username: id }) {
         try {
-            const userAccount = await this.account.create(ID.unique(), email, password, name);
+            const userAccount = await this.account.create(id, email, password, name);
             if (userAccount) {
                 // create login feature
                 return this.login({ email, password });
