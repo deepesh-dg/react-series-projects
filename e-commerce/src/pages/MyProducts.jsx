@@ -35,7 +35,7 @@ export default function MyProducts() {
                         <div key={product.$id} className="w-1/4 px-2">
                             <ProductCard product={product} />
                             <div className="flex gap-4 mt-2">
-                                <Link to={`${product.$id}`} className="inline-block w-full">
+                                <Link to={product.$id} className="inline-block w-full">
                                     <Button bgColor="bg-green-600" className="w-full">
                                         Edit
                                     </Button>

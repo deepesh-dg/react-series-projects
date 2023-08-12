@@ -30,6 +30,14 @@ const router = createBrowserRouter([
                 element: <Product />,
             },
             {
+                path: "/cart",
+                element: (
+                    <AuthLayout authentication>
+                        <Cart />
+                    </AuthLayout>
+                ),
+            },
+            {
                 path: "/add-product",
                 element: (
                     <AuthLayout authentication isSeller>
@@ -42,14 +50,6 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication isSeller>
                         <MyProducts />
-                    </AuthLayout>
-                ),
-            },
-            {
-                path: "/cart",
-                element: (
-                    <AuthLayout authentication>
-                        <Cart />
                     </AuthLayout>
                 ),
             },

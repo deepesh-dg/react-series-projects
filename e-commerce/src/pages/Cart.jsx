@@ -8,7 +8,7 @@ const Cart = () => {
     const [products, setProducts] = useState([]);
     const subTotalAmount = products
         .map((product) => {
-            const cartProduct = cart.products.filter((p) => product.$id.toString() === p.$id)[0];
+            const cartProduct = cart.products.filter((p) => product.$id === p.$id)[0];
 
             const quantity = cartProduct ? cartProduct.quantity : 0;
             const price = product.price;
@@ -22,13 +22,13 @@ const Cart = () => {
         const getProducts = async () => {
             const promises = [];
 
-            cart.products.forEach((product) => {
-                promises.push(appwriteService.getProduct(product.$id));
-            });
+            cart.products.forEach((product) => promises.push(appwriteService.getProduct(product.$id)));
 
             try {
-                setProducts(await Promise.all(await Promise.all(promises)));
-            } catch (e) {}
+                setProducts(await Promise.all(promises));
+            } catch (e) {
+                console.log(e);
+            }
         };
 
         getProducts();

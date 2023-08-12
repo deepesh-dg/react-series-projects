@@ -18,7 +18,7 @@ export default function Sent({ $id, msg, attachmentId }) {
                             target="_blank"
                         >
                             <img
-                                className=""
+                                className="max-w-sm"
                                 src={appwriteService.getFilePreview(attachmentId)}
                                 alt="attachment"
                             />

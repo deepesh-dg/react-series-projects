@@ -7,14 +7,13 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import store from "./store/store";
 import App from "./App";
 import Home from "./pages/Home";
-import AuthLayout from "./pages/(auth)/AuthLayout";
-import ProtectedLayout from "./pages/(protected)/ProtectedLayout";
-import AddPost from "./pages/(protected)/AddPost";
-import Login from "./pages/(auth)/Login";
-import Signup from "./pages/(auth)/Signup";
+import { AuthLayout } from "./components";
+import AddPost from "./pages/AddPost";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Post from "./pages/Post";
-import EditPost from "./pages/(protected)/EditPost";
-import AllPosts from "./pages/(protected)/AllPosts";
+import EditPost from "./pages/EditPost";
+import AllPosts from "./pages/AllPosts";
 
 const router = createBrowserRouter([
     {
@@ -27,53 +26,46 @@ const router = createBrowserRouter([
             },
             {
                 path: "/login",
-                element: <AuthLayout />,
-                children: [
-                    {
-                        path: "",
-                        element: <Login />,
-                    },
-                ],
+                element: (
+                    <AuthLayout authentication={false}>
+                        <Login />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "/signup",
-                element: <AuthLayout />,
-                children: [
-                    {
-                        path: "",
-                        element: <Signup />,
-                    },
-                ],
+                element: (
+                    <AuthLayout authentication={false}>
+                        <Signup />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "/all-posts",
-                element: <ProtectedLayout />,
-                children: [
-                    {
-                        path: "",
-                        element: <AllPosts />,
-                    },
-                ],
+                element: (
+                    <AuthLayout authentication>
+                        {" "}
+                        <AllPosts />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "/add-post",
-                element: <ProtectedLayout />,
-                children: [
-                    {
-                        path: "",
-                        element: <AddPost />,
-                    },
-                ],
+                element: (
+                    <AuthLayout authentication>
+                        {" "}
+                        <AddPost />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "/edit-post/:slug",
-                element: <ProtectedLayout />,
-                children: [
-                    {
-                        path: "",
-                        element: <EditPost />,
-                    },
-                ],
+                element: (
+                    <AuthLayout authentication>
+                        {" "}
+                        <EditPost />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "/post/:slug",

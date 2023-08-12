@@ -11,7 +11,7 @@ import Logo from "./Logo";
 import ProductForm from "./ProductForm";
 import Textarea from "./Textarea";
 import ProductCard from "./ProductCard";
-import AddToCartButton from "./AddToCartButton";
+import AddToCartButton from "./AddToCartButton/AddToCartButton";
 import EmptyCart from "./EmptyCart";
 import CartItem from "./CartItem";
 

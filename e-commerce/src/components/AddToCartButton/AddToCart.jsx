@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { add } from "../store/cartSlice";
-import Button from "./Button";
+import { add } from "../../store/cartSlice";
+import { Button } from "..";
 
 export function AddToCart({ productId }) {
     const dispatch = useDispatch();

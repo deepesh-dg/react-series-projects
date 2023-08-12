@@ -18,6 +18,7 @@ const Login = () => {
 
     const login = async (e) => {
         e.preventDefault();
+        setError("");
 
         try {
             const session = await authService.login(formData);

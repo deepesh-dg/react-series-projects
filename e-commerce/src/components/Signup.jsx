@@ -11,7 +11,6 @@ const Signup = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        username: "",
         password: "",
         prefs: {
             role: "customer",
@@ -24,6 +23,7 @@ const Signup = () => {
 
     const create = async (e) => {
         e.preventDefault();
+        setError("");
 
         try {
             const userData = await authService.createAccount(formData);
@@ -59,13 +59,6 @@ const Signup = () => {
                             setValue={(value) => setFormData((prev) => ({ ...prev, name: value }))}
                             label="Full Name : "
                             placeholder="Full Name"
-                            required
-                        />
-                        <Input
-                            setValue={(value) => setFormData((prev) => ({ ...prev, username: value }))}
-                            label="Username : "
-                            placeholder="Username"
-                            type="text"
                             required
                         />
                         <Input

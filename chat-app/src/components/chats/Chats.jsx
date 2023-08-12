@@ -25,8 +25,10 @@ export default function Chats() {
                         })}
                     </div>
 
-                    <div>
-                        <ChatForm />
+                    <div className="fixed inset-x-0 bottom-0 bg-white">
+                        <Container>
+                            <ChatForm />
+                        </Container>
                     </div>
                 </div>
             </Container>

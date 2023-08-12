@@ -35,7 +35,7 @@ export default function ChatForm() {
         <div className="w-full">
             <form className="flex content-center" onSubmit={send}>
                 <input
-                    className="w-full py-2 px-4 outline-none bg-transparent border mr-2 rounded-lg"
+                    className="w-full py-2 px-4 outline-none bg-transparent border mr-2"
                     placeholder="Send Msg..."
                     value={msg}
                     onChange={(e) => setMsg(e.currentTarget.value)}
@@ -49,14 +49,12 @@ export default function ChatForm() {
                 />
                 <button
                     type="button"
-                    className="bg-gray-200 mr-2 rounded-lg py-0.5 px-4 text-sm"
+                    className="bg-gray-200 mr-2 py-0.5 px-4 text-sm"
                     onClick={() => ref.current.click()}
                 >
                     {file ? file.name : "+"}
                 </button>
-                <button className="shrink-0 bg-blue-600 text-white rounded-lg py-0.5 px-2 text-sm">
-                    Send
-                </button>
+                <button className="shrink-0 bg-blue-600 text-white py-0.5 px-2 text-sm">Send</button>
             </form>
         </div>
     );

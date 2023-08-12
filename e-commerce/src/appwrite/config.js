@@ -16,7 +16,7 @@ export class Service {
         try {
             return await this.databases.getDocument(conf.appwriteDatabaseId, conf.appwriteCollectoinId, slug);
         } catch (error) {
-            console.log("Appwrite service :: v() :: " + error);
+            console.log("Appwrite service :: getProduct() :: " + error);
             return false;
         }
     }

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { changeQuantity } from "../store/cartSlice";
-import Button from "./Button";
+import { changeQuantity } from "../../store/cartSlice";
+import { Button } from "..";
 
 export function ManageQuantity({ productId }) {
     const cart = useSelector((store) => store.cart);

@@ -13,7 +13,7 @@ export default function Received({ msg, senderId, attachmentId }) {
                         target="_blank"
                     >
                         <img
-                            className=""
+                            className="max-w-sm"
                             src={appwriteService.getFilePreview(attachmentId)}
                             alt="attachment"
                         />
