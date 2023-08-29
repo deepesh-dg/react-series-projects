@@ -4,9 +4,9 @@ import "./index.css";
 import Layout from "./Layout";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import Home from "./components/home/Home";
+import About from "./components/about/About";
+import Contact from "./components/contact/Contact";
 
 const router = createBrowserRouter([
     {
