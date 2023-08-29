@@ -70,7 +70,7 @@ const Login = () => {
                             {...register("password", { required: true })}
                         />
                         <Button type="submit" className="w-full">
-                            Sign in{" "}
+                            Sign in
                         </Button>
                     </div>
                 </form>

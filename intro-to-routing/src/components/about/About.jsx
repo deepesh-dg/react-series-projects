@@ -21,7 +21,6 @@ export default function About() {
                             aperiam, repellat expedita consequatur! Officiis id consequatur atque doloremque!
                         </p>
                         <p className="mt-4 text-gray-600">
-                            {" "}
                             Nobis minus voluptatibus pariatur dignissimos libero quaerat iure expedita at?
                             Asperiores nemo possimus nesciunt dicta veniam aspernatur quam mollitia.
                         </p>
